@@ -1,17 +1,17 @@
-import {Serializable, jsonProperty, jsonName} from "../../src";
+import {Serializable, serializeProperty, serializeName} from "../../src";
 
 export class UserNaming extends Serializable {
 
-    @jsonName("user::profile::id")
-    @jsonProperty(String)
+    @serializeName("user::profile::id")
+    @serializeProperty(String)
     public id: string = "";
 
-    @jsonName("user::profile::first:name")
-    @jsonProperty(String)
+    @serializeName("user::profile::first:name")
+    @serializeProperty(String)
     public firstName: string = "";
 
-    @jsonName("user::profile::last:name")
-    @jsonProperty(String)
+    @serializeName("user::profile::last:name")
+    @serializeProperty(String)
     public lastName: string = "";
 
 }

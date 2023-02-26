@@ -1,93 +1,93 @@
 /* eslint-disable max-classes-per-file */
-import {jsonProperty} from "../../src/decorators/JsonProperty";
-import {jsonIgnore} from "../../src/decorators/JsonIgnore";
-import {jsonObject} from "../../src/decorators/JsonObject";
+import {serializeProperty} from "../../src/decorators/SerializeProperty";
+import {serializeIgnore} from "../../src/decorators/SerializeIgnore";
+import {serializableObject} from "../../src/decorators/SerializableObject";
 
-@jsonObject(void 0, true)
+@serializableObject(void 0, true)
 export class FriendExt {
 
-    public fromJSON!: (json: Record<string, unknown>) => this;
+    public deserialize!: (json: Record<string, unknown>) => this;
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public id: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public name: string = "";
 
 }
 
-@jsonObject(void 0, true)
+@serializableObject(void 0, true)
 export class UserExt {
 
-    public fromJSON!: (json: Record<string, unknown>) => this;
+    public deserialize!: (json: Record<string, unknown>) => this;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public id?: string = "";
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public index: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public guid: string = "";
 
-    @jsonProperty(Boolean)
+    @serializeProperty(Boolean)
     public isActive: boolean = false;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public balance: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public picture: string = "";
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public age: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public eyeColor: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public name: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public gender: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public company: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public email: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public phone: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public address: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public about: string = "";
 
-    @jsonProperty(Date, null)
+    @serializeProperty(Date, null)
     public registered: Date | null = null;
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public latitude: number = 0;
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public longitude: number = 0;
 
-    @jsonProperty([String])
+    @serializeProperty([String])
     public tags: string[] = [];
 
-    @jsonProperty([FriendExt])
+    @serializeProperty([FriendExt])
     public friends: FriendExt[] = [];
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public greeting: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public favoriteFruit: string = "";
 
-    @jsonIgnore()
+    @serializeIgnore()
     public isExpanded: boolean = false;
 
 }

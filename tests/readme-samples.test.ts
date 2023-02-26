@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import("reflect-metadata"); // Polyfill
 import {assert} from "chai";
-import {Serializable, SnakeCaseNamingStrategy, jsonObject, jsonProperty, jsonName} from "../src";
+import {Serializable, SnakeCaseNamingStrategy, serializableObject, serializeProperty, serializeName} from "../src";
 
 describe("Serializable", () => {
     describe("readme samples", () => {
@@ -13,25 +13,25 @@ describe("Serializable", () => {
                 "very::strange::json:name": "I love jewelry"
             };
 
-            @jsonObject({namingStrategy: new SnakeCaseNamingStrategy()})
+            @serializableObject({namingStrategy: new SnakeCaseNamingStrategy()})
             class User extends Serializable {
 
-                @jsonProperty(String, null)
+                @serializeProperty(String, null)
                 public firstName: string | null = null;
 
-                @jsonProperty(String, null)
+                @serializeProperty(String, null)
                 public lastName: string | null = null;
 
-                @jsonProperty(Date, null)
+                @serializeProperty(Date, null)
                 public dateOfBirth: Date | null = null;
 
-                @jsonName("very::strange::json:name")
-                @jsonProperty(String, null)
+                @serializeName("very::strange::json:name")
+                @serializeProperty(String, null)
                 public veryStrangePropertyName: string | null = null;
 
             }
 
-            const user = new User().fromJSON(json);
+            const user = new User().deserialize(json);
 
             assert.strictEqual(user.firstName, json.first_name); // True
             assert.strictEqual(user.lastName, json.last_name); // True

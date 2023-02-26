@@ -6,6 +6,8 @@ import {ReferenceLoopHandling} from "../enums/ReferenceLoopHandling.js";
 import {MissingMemberHandling} from "../enums/MissingMemberHandling.js";
 import {DateFormatHandling} from "../enums/DateFormatHandling.js";
 import type {INamingStrategy} from "../naming-strategies/INamingStrategy.js";
+import type {ISerializer} from "../serializers/ISerializer.js";
+import {JsonSerializer} from "../serializers/JsonSerializer.js";
 
 // From newtonsoft https://www.newtonsoft.com/json/help/html/SerializationSettings.htm
 export class SerializationSettings {
@@ -23,5 +25,7 @@ export class SerializationSettings {
     public namingStrategy: INamingStrategy | null = null;
 
     public logLevel: LogLevels = LogLevels.Warning;
+
+    public serializer: ISerializer = new JsonSerializer();
 
 }

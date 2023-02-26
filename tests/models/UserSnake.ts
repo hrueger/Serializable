@@ -1,96 +1,96 @@
 /* eslint-disable max-classes-per-file */
-import {jsonObject, SnakeCaseNamingStrategy, Serializable, jsonProperty, jsonIgnore} from "../../src";
+import {serializableObject, SnakeCaseNamingStrategy, Serializable, serializeProperty, serializeIgnore} from "../../src";
 
 export class FriendSnake extends Serializable {
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public idSnake: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public nameSnake: string = "";
 
 }
 
 export class UserSnake extends Serializable {
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public idSnake?: string = "";
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public indexSnake: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public guidSnake: string = "";
 
-    @jsonProperty(Boolean)
+    @serializeProperty(Boolean)
     public isActiveSnake: boolean = false;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public balanceSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public pictureSnake: string = "";
 
-    @jsonProperty(Number)
+    @serializeProperty(Number)
     public ageSnake: number = 0;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public eyeColorSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public nameSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public genderSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public companySnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public emailSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public phoneSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public addressSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public aboutSnake: string = "";
 
-    @jsonProperty(Date, null)
+    @serializeProperty(Date, null)
     public registeredSnake: Date | null = null;
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public latitudeSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public longitudeSnake: string = "";
 
-    @jsonProperty([String])
+    @serializeProperty([String])
     public tagsSnake: string[] = [];
 
-    @jsonProperty([FriendSnake])
+    @serializeProperty([FriendSnake])
     public friendsSnake: FriendSnake[] = [];
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public greetingSnake: string = "";
 
-    @jsonProperty(String)
+    @serializeProperty(String)
     public favoriteFruitSnake: string = "";
 
-    @jsonIgnore()
+    @serializeIgnore()
     public isExpandedSnake: boolean = false;
 
 }
 
-@jsonObject({namingStrategy: new SnakeCaseNamingStrategy()})
+@serializableObject({namingStrategy: new SnakeCaseNamingStrategy()})
 export class FriendSnakeObject extends FriendSnake {}
 
-@jsonObject({namingStrategy: new SnakeCaseNamingStrategy()})
+@serializableObject({namingStrategy: new SnakeCaseNamingStrategy()})
 export class UserSnakeObject extends UserSnake {
 
-    @jsonProperty([FriendSnakeObject])
+    @serializeProperty([FriendSnakeObject])
     public friendsSnake: FriendSnakeObject[] = [];
 
 }

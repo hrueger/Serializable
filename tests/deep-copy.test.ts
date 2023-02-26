@@ -9,8 +9,8 @@ describe("Serializable", () => {
             const {User} = await import("./models/User");
             const json: Record<string, unknown>[] = await import("./jsons/json-generator.json", {assert: {type: "json"}});
 
-            const user1 = new User().fromJSON(json[0]);
-            const user2 = new User().fromJSON(user1);
+            const user1 = new User().deserialize(json[0]);
+            const user2 = new User().deserialize(user1);
 
             assert.deepEqual(user1, user2);
         });

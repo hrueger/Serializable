@@ -7,12 +7,12 @@ import {SnakeCaseNamingStrategy} from "../src";
 
 describe("Serializable", () => {
     describe("naming strategies", () => {
-        it("deserialize must support snack case naming by fromJson parameters", async () => {
+        it("deserialize must support snack case naming by deserialize parameters", async () => {
             const {UserSnake} = await import("./models/UserSnake");
             const json = await import("./jsons/json-generator-snake.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user = new UserSnake().fromJSON(
+            const user = new UserSnake().deserialize(
                 object,
                 {namingStrategy: new SnakeCaseNamingStrategy()}
             );
@@ -44,12 +44,12 @@ describe("Serializable", () => {
             });
         });
 
-        it("deserialize must support snack case naming by jsonObject decorator", async () => {
+        it("deserialize must support snack case naming by serializableObject decorator", async () => {
             const {UserSnakeObject} = await import("./models/UserSnake");
             const json = await import("./jsons/json-generator-snake.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user = new UserSnakeObject().fromJSON(object);
+            const user = new UserSnakeObject().deserialize(object);
 
             assert.isTrue(user instanceof UserSnakeObject);
             assert.strictEqual(user.idSnake, object.id_snake, "idSnake is not equal");
@@ -78,12 +78,12 @@ describe("Serializable", () => {
             });
         });
 
-        it("serializer must support snack case naming by jsonObject decorator", async () => {
+        it("serializer must support snack case naming by serializableObject decorator", async () => {
             const {UserSnakeObject} = await import("./models/UserSnake");
             const json = await import("./jsons/json-generator-snake.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user = new UserSnakeObject().fromJSON(object);
+            const user = new UserSnakeObject().deserialize(object);
             const serialized = JSON.parse(JSON.stringify(user)) as Record<string, unknown>;
 
             assert.strictEqual(serialized.id_snake, object.id_snake, "id_snake is not equal");
@@ -112,12 +112,12 @@ describe("Serializable", () => {
             });
         });
 
-        it("method fromJSON must support snack case naming by jsonName decorator", async () => {
+        it("method deserialize must support snack case naming by serializeName decorator", async () => {
             const {UserNaming} = await import("./models/UserName");
             const json = await import("./jsons/user-naming.json", {assert: {type: "json"}});
             const pjson = Reflect.get(json, "default") as typeof json;
 
-            const user = new UserNaming().fromJSON(pjson);
+            const user = new UserNaming().deserialize(pjson);
 
             assert.isTrue(user instanceof UserNaming);
             assert.strictEqual(user.id, pjson["user::profile::id"], "id is not equal");
@@ -130,8 +130,8 @@ describe("Serializable", () => {
             const json = await import("./jsons/json-generator-snake.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user1 = new UserSnakeObject().fromJSON(object);
-            const user2 = new UserSnakeObject().fromJSON(user1);
+            const user1 = new UserSnakeObject().deserialize(object);
+            const user2 = new UserSnakeObject().deserialize(user1);
 
             assert.deepEqual(user1, user2);
         });

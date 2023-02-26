@@ -8,23 +8,22 @@ import type {FriendExt} from "./models/UserExt";
 
 describe("Serializable", () => {
     describe("decorators", () => {
-        it("user property marked as jsonIgnore must by dropped", async () => {
+        it("user property marked as serializeIgnore must by dropped", async () => {
             const {User} = await import("./models/User");
             const json: Record<string, unknown>[] = await import("./jsons/json-generator.json", {assert: {type: "json"}});
-
-            const user = new User().fromJSON(json[0]);
+            const user = new User().deserialize(json[0]);
             user.isExpanded = true;
             const obj = JSON.parse(JSON.stringify(user)) as IUser;
 
             assert.isUndefined(obj.isExpanded);
         });
 
-        it("class can be extended by decorator jsonObject", async () => {
+        it("class can be extended by decorator serializableObject", async () => {
             const {UserExt} = await import("./models/UserExt");
             const json = await import("./jsons/json-generator.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user = new UserExt().fromJSON(object);
+            const user = new UserExt().deserialize(object);
 
             assert.isTrue(user instanceof UserExt);
             assert.strictEqual(user.id, object.id, "id is not equal");

@@ -1,8 +1,8 @@
 // Decoratore
-export {jsonIgnore} from "./decorators/JsonIgnore.js";
-export {jsonName} from "./decorators/JsonName.js";
-export {jsonObject} from "./decorators/JsonObject.js";
-export {jsonProperty} from "./decorators/JsonProperty.js";
+export {serializeIgnore} from "./decorators/SerializeIgnore.js";
+export {serializeName} from "./decorators/SerializeName.js";
+export {serializableObject} from "./decorators/SerializableObject.js";
+export {serializeProperty} from "./decorators/SerializeProperty.js";
 
 // Base class
 export {Serializable} from "./classes/Serializable.js";
@@ -23,3 +23,8 @@ export type {INamingStrategy} from "./naming-strategies/INamingStrategy.js";
 export {SnakeCaseNamingStrategy} from "./naming-strategies/SnakeCaseNamingStrategy.js";
 export {PascalCaseNamingStrategy} from "./naming-strategies/PascalCaseNamingStrategy.js";
 export {KebabCaseNamingStrategy} from "./naming-strategies/KebabCaseNamingStrategy.js";
+
+// Serializers
+export type {ISerializer} from "./serializers/ISerializer.js";
+export {JsonSerializer} from "./serializers/JsonSerializer.js";
+export {YamlSerializer} from "./serializers/YamlSerializer.js";

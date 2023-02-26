@@ -7,12 +7,12 @@ import type {User as IUser, Friend as IFriend} from "./models/User";
 
 describe("Serializable", () => {
     describe("base functions", () => {
-        it("user from method fromJSON must be instance of User", async () => {
+        it("user from method deserialize must be instance of User", async () => {
             const {User} = await import("./models/User");
             const json = await import("./jsons/json-generator.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user = new User().fromJSON(object);
+            const user = new User().deserialize(object);
 
             assert.isTrue(user instanceof User);
             assert.strictEqual(user.id, object.id, "id is not equal");
@@ -41,12 +41,12 @@ describe("Serializable", () => {
             });
         });
 
-        it("user from static method fromJSON must be instance of User", async () => {
+        it("user from static method deserialize must be instance of User", async () => {
             const {User} = await import("./models/User");
             const json = await import("./jsons/json-generator.json", {assert: {type: "json"}});
             const [object] = Reflect.get(json, "default") as typeof json;
 
-            const user: IUser = User.fromJSON(object);
+            const user: IUser = User.deserialize(object);
 
             assert.isTrue(user instanceof User);
             assert.strictEqual(user.id, object.id, "id is not equal");
